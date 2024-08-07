@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Dummy_db.dart';
 import 'package:flutter_application_1/utils/constents/Color_constens.dart';
@@ -24,7 +25,6 @@ class HomeScree extends StatelessWidget {
               height: 40,
             ),
             MovieBuilderWidget(
-              
               images: DummyDb.MoviePageList,
               Customwidth: 102,
               Titlle: "Perviews",
@@ -130,10 +130,23 @@ class HomeScree extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 24),
           height: 415,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(ImageConstents.BG_NETFLIX_PNG))),
+          // decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //         fit: BoxFit.cover,
+          //         image: AssetImage(ImageConstents.BG_NETFLIX_PNG))),
+          child: CarouselSlider(
+              items: List.generate(
+                DummyDb.MoviePageList5.length,
+                (index) => Container(
+                  height: 415,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(DummyDb.MoviePageList5[index]))),
+                ),
+              ),
+              options: CarouselOptions(
+                  autoPlay: true, enlargeFactor: .2, enlargeCenterPage: true)),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 24),
